@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Raeyan — Graphic Design Entrepreneur</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#FF5C4D;--coral-light:#FF8C80;--coral-dark:#E03D2E;
+  --yellow:#FFD84D;--yellow-light:#FFE88A;
+  --teal:#00C9B1;--teal-dark:#00A892;
+  --navy:#0F1B35;--navy-mid:#1A2D52;
+  --white:#FFFFFF;--off-white:#F7F5F0;--light-gray:#F0EDE8;
+  --muted:#6B7280;
+  --font-display:'Fraunces',serif;
+  --font-body:'Plus Jakarta Sans',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--navy);font-family:var(--font-body);overflow-x:hidden;cursor:none;}
+
+#cur{width:14px;height:14px;background:var(--coral);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;}
+#cur-ring{width:40px;height:40px;border:2px solid var(--coral);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .3s;opacity:.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:20px 64px;display:flex;justify-content:space-between;align-items:center;transition:all .4s;}
+nav.scrolled{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);box-shadow:0 2px 40px rgba(15,27,53,.08);padding:14px 64px;}
+.nav-logo{font-family:var(--font-display);font-weight:900;font-size:1.5rem;color:var(--navy);text-decoration:none;}
+.nav-logo span{color:var(--coral);}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-size:.82rem;font-weight:600;letter-spacing:.04em;color:var(--navy);text-decoration:none;position:relative;padding-bottom:4px;transition:color .3s;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--coral);transition:width .3s;}
+.nav-links a:hover{color:var(--coral);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{padding:10px 28px;background:var(--coral);color:var(--white);font-size:.8rem;font-weight:700;letter-spacing:.05em;border-radius:100px;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(255,92,77,.35);}
+.nav-cta:hover{background:var(--coral-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,92,77,.45);}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 64px 80px;position:relative;overflow:hidden;background:linear-gradient(135deg,#FFF9F0 0%,#FFF3F2 50%,#F0FFF9 100%);}
+.hero-blob1{position:absolute;top:-100px;right:-80px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,92,77,.15),transparent 70%);animation:blobFloat 6s ease-in-out infinite;}
+.hero-blob2{position:absolute;bottom:-120px;left:-60px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,201,177,.12),transparent 70%);animation:blobFloat 8s ease-in-out infinite reverse;}
+.hero-blob3{position:absolute;top:40%;right:30%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,216,77,.15),transparent 70%);animation:blobFloat 7s ease-in-out infinite 2s;}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(20px,-20px) scale(1.05);}66%{transform:translate(-15px,15px) scale(.97);}}
+
+.hero-content{position:relative;z-index:2;max-width:680px;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;background:var(--white);border-radius:100px;border:1.5px solid rgba(255,92,77,.2);font-size:.75rem;font-weight:600;color:var(--coral);letter-spacing:.06em;margin-bottom:36px;box-shadow:0 4px 20px rgba(255,92,77,.1);animation:fadeUp .7s ease both;}
+.hero-badge .pulse{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.4);}}
+.hero-title{font-family:var(--font-display);font-size:clamp(3.2rem,6vw,5.8rem);font-weight:900;line-height:1.02;color:var(--navy);margin-bottom:12px;animation:fadeUp .8s ease .1s both;}
+.hero-title .line2{font-style:italic;font-weight:300;background:linear-gradient(135deg,var(--coral),var(--coral-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.9;max-width:500px;margin-bottom:48px;animation:fadeUp .8s ease .22s both;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .8s ease .34s both;}
+.btn-main{padding:16px 38px;background:var(--coral);color:var(--white);font-weight:700;font-size:.88rem;letter-spacing:.03em;border-radius:100px;text-decoration:none;border:none;cursor:none;transition:all .3s;box-shadow:0 8px 32px rgba(255,92,77,.4);display:inline-flex;align-items:center;gap:10px;}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(255,92,77,.5);background:var(--coral-dark);}
+.btn-outline{padding:16px 38px;background:transparent;color:var(--navy);font-weight:700;font-size:.88rem;border-radius:100px;text-decoration:none;border:2px solid rgba(15,27,53,.15);cursor:none;transition:all .3s;display:inline-flex;align-items:center;gap:10px;}
+.btn-outline:hover{border-color:var(--coral);color:var(--coral);transform:translateY(-3px);}
+
+.hero-cards{position:absolute;right:64px;top:50%;transform:translateY(-50%);z-index:2;display:flex;flex-direction:column;gap:16px;animation:fadeLeft .9s ease .4s both;}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(40px) translateY(-50%);}to{opacity:1;transform:translateX(0) translateY(-50%);}}
+.float-card{background:var(--white);border-radius:20px;padding:20px 24px;box-shadow:0 12px 48px rgba(15,27,53,.1);border:1px solid rgba(255,255,255,.8);min-width:180px;}
+.float-card.c1{animation:cardFloat1 4s ease-in-out infinite;}
+.float-card.c2{animation:cardFloat2 5s ease-in-out infinite 1s;}
+.float-card.c3{animation:cardFloat1 4.5s ease-in-out infinite .5s;}
+@keyframes cardFloat1{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes cardFloat2{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+.card-icon{font-size:1.5rem;margin-bottom:8px;}
+.card-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.card-val{font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--navy);}
+.card-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:.68rem;font-weight:700;margin-top:6px;}
+.pill-green{background:rgba(0,201,177,.12);color:var(--teal-dark);}
+.pill-coral{background:rgba(255,92,77,.1);color:var(--coral);}
+
+.marquee-wrap{background:var(--navy);padding:18px 0;overflow:hidden;}
+.marquee-track{display:flex;animation:marquee 22s linear infinite;white-space:nowrap;}
+.marquee-item{display:flex;align-items:center;gap:20px;padding:0 30px;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);flex-shrink:0;}
+.marquee-item .star{color:var(--yellow);font-size:1rem;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+.section-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:100px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,92,77,.1);color:var(--coral);margin-bottom:20px;}
+.section-title{font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3.6rem);font-weight:900;line-height:1.1;color:var(--navy);margin-bottom:20px;}
+.section-title em{font-style:italic;font-weight:300;color:var(--coral);}
+.section-sub{font-size:.92rem;color:var(--muted);line-height:1.9;max-width:540px;}
+
+.about{padding:120px 64px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-text p{font-size:.9rem;color:var(--muted);line-height:1.95;margin-bottom:18px;}
+.skills-list{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px;}
+.skill-tag{padding:8px 18px;border-radius:100px;font-size:.78rem;font-weight:600;background:var(--off-white);color:var(--navy);border:1.5px solid rgba(15,27,53,.08);transition:all .3s;cursor:default;}
+.skill-tag:hover{background:var(--coral);color:var(--white);border-color:var(--coral);transform:translateY(-2px);}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.stat-box{background:var(--off-white);border-radius:24px;padding:36px 28px;border:1.5px solid rgba(15,27,53,.06);transition:all .4s;position:relative;overflow:hidden;cursor:default;}
+.stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--coral),var(--yellow));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.stat-box:hover::before{transform:scaleX(1);}
+.stat-box:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(15,27,53,.1);}
+.stat-emoji{font-size:2rem;margin-bottom:12px;}
+.stat-num{font-family:var(--font-display);font-size:3rem;font-weight:900;color:var(--navy);line-height:1;margin-bottom:6px;}
+.stat-num span{color:var(--coral);}
+.stat-label{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+
+.services{padding:120px 64px;background:var(--navy);position:relative;overflow:hidden;}
+.services-bg-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1.5px,transparent 1.5px);background-size:32px 32px;}
+.services-header{text-align:center;margin-bottom:72px;position:relative;}
+.services-header .section-title{color:var(--white);}
+.services-header .section-sub{color:rgba(255,255,255,.45);margin:0 auto;}
+.services-header .section-chip{background:rgba(255,216,77,.15);color:var(--yellow);}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;}
+.svc-card{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.08);border-radius:24px;padding:40px 28px;transition:all .4s;position:relative;overflow:hidden;cursor:default;}
+.svc-card:hover{transform:translateY(-10px);border-color:rgba(255,92,77,.4);box-shadow:0 24px 60px rgba(0,0,0,.3);background:rgba(255,92,77,.08);}
+.svc-icon-wrap{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:24px;background:rgba(255,255,255,.07);transition:transform .3s;}
+.svc-card:hover .svc-icon-wrap{transform:scale(1.15) rotate(-5deg);}
+.svc-num{font-size:.65rem;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.3);margin-bottom:12px;}
+.svc-name{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--white);margin-bottom:14px;}
+.svc-desc{font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.85;}
+.svc-arrow{margin-top:28px;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:.9rem;transition:all .3s;}
+.svc-card:hover .svc-arrow{background:var(--coral);border-color:var(--coral);color:var(--white);transform:rotate(-45deg);}
+
+.portfolio{padding:120px 64px;background:var(--off-white);}
+.portfolio-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;}
+.filter-tabs{display:flex;gap:8px;margin-bottom:48px;flex-wrap:wrap;}
+.filter-btn{padding:9px 22px;border-radius:100px;border:1.5px solid rgba(15,27,53,.12);background:transparent;color:var(--muted);font-size:.78rem;font-weight:600;cursor:none;transition:all .3s;font-family:var(--font-body);}
+.filter-btn.active,.filter-btn:hover{background:var(--coral);color:var(--white);border-color:var(--coral);}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.proj-card{background:var(--white);border-radius:24px;overflow:hidden;border:1.5px solid rgba(15,27,53,.06);transition:all .4s;cursor:none;}
+.proj-card:hover{transform:translateY(-8px);box-shadow:0 24px 72px rgba(15,27,53,.12);}
+.proj-thumb{height:200px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden;}
+.proj-body{padding:28px;}
+.proj-tags{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+.proj-tag-pill{padding:4px 12px;border-radius:100px;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.proj-name{font-family:var(--font-display);font-size:1.2rem;font-weight:700;margin-bottom:10px;color:var(--navy);}
+.proj-desc{font-size:.78rem;color:var(--muted);line-height:1.8;margin-bottom:20px;}
+.proj-link{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:var(--coral);text-decoration:none;transition:gap .3s;}
+.proj-link:hover{gap:14px;}
+
+.why{padding:120px 64px;background:var(--white);}
+.why-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start;}
+.why-items{display:flex;flex-direction:column;gap:16px;margin-top:40px;}
+.why-item{display:flex;gap:20px;align-items:flex-start;padding:28px;border-radius:20px;border:1.5px solid rgba(15,27,53,.07);background:var(--off-white);transition:all .4s;cursor:default;}
+.why-item:hover{background:var(--white);border-color:var(--coral);box-shadow:0 12px 40px rgba(255,92,77,.1);transform:translateX(8px);}
+.why-check{width:44px;height:44px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:linear-gradient(135deg,var(--coral),var(--coral-light));box-shadow:0 6px 20px rgba(255,92,77,.35);}
+.why-t{font-weight:700;font-size:.95rem;margin-bottom:6px;color:var(--navy);}
+.why-d{font-size:.8rem;color:var(--muted);line-height:1.8;}
+.testimonial-card{background:linear-gradient(135deg,var(--navy),var(--navy-mid));border-radius:28px;padding:48px;color:var(--white);position:sticky;top:120px;}
+.test-stars{color:var(--yellow);font-size:1.1rem;letter-spacing:4px;margin-bottom:24px;}
+.test-quote{font-family:var(--font-display);font-size:1.35rem;font-weight:300;font-style:italic;line-height:1.55;margin-bottom:32px;color:rgba(255,255,255,.9);}
+.test-author{display:flex;align-items:center;gap:16px;}
+.test-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--coral),var(--yellow));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:900;font-size:1.2rem;color:var(--white);}
+.test-name{font-weight:700;font-size:.92rem;margin-bottom:3px;}
+.test-role{font-size:.75rem;color:rgba(255,255,255,.45);}
+.test-divider{margin-top:32px;padding-top:28px;border-top:1px solid rgba(255,255,255,.1);}
+
+.contact{padding:120px 64px;background:linear-gradient(135deg,#FFF5F4 0%,#F0FFFE 100%);position:relative;overflow:hidden;}
+.contact-blob{position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,92,77,.08),transparent 70%);}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;}
+.contact-form-wrap{background:var(--white);border-radius:28px;padding:48px;box-shadow:0 20px 80px rgba(15,27,53,.08);}
+.form-title{font-family:var(--font-display);font-size:1.8rem;font-weight:900;color:var(--navy);margin-bottom:8px;}
+.form-sub{font-size:.82rem;color:var(--muted);margin-bottom:36px;}
+.form-group{margin-bottom:20px;}
+.form-label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin-bottom:8px;display:block;}
+.form-input,.form-textarea{width:100%;padding:14px 18px;border:1.5px solid rgba(15,27,53,.1);border-radius:14px;font-family:var(--font-body);font-size:.88rem;color:var(--navy);background:var(--off-white);outline:none;transition:all .3s;resize:none;cursor:none;}
+.form-input:focus,.form-textarea:focus{border-color:var(--coral);background:var(--white);box-shadow:0 0 0 4px rgba(255,92,77,.1);}
+.form-textarea{height:130px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-submit{width:100%;padding:16px;background:linear-gradient(135deg,var(--coral),var(--coral-light));color:var(--white);border:none;border-radius:14px;font-family:var(--font-body);font-size:.9rem;font-weight:700;cursor:none;transition:all .3s;box-shadow:0 8px 32px rgba(255,92,77,.4);display:flex;align-items:center;justify-content:center;gap:10px;}
+.form-submit:hover{transform:translateY(-3px);box-shadow:0 14px 48px rgba(255,92,77,.5);}
+.form-success{display:none;text-align:center;padding:40px 20px;}
+.form-success .check-icon{font-size:3.5rem;margin-bottom:16px;}
+.form-success h3{font-family:var(--font-display);font-size:1.6rem;font-weight:900;color:var(--teal-dark);margin-bottom:10px;}
+.form-success p{font-size:.85rem;color:var(--muted);}
+.contact-info-side{padding:20px 0;}
+.contact-heading{font-family:var(--font-display);font-size:2.8rem;font-weight:900;line-height:1.1;color:var(--navy);margin-bottom:20px;}
+.contact-heading em{font-style:italic;font-weight:300;color:var(--coral);}
+.contact-para{font-size:.9rem;color:var(--muted);line-height:1.9;margin-bottom:40px;}
+.contact-methods{display:flex;flex-direction:column;gap:16px;}
+.contact-method{display:flex;align-items:center;gap:18px;padding:20px 24px;background:var(--white);border-radius:18px;border:1.5px solid rgba(15,27,53,.06);transition:all .3s;}
+.contact-method:hover{border-color:var(--coral);transform:translateX(6px);}
+.cm-icon{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(255,92,77,.1),rgba(255,92,77,.05));display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.cm-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.cm-val{font-size:.88rem;font-weight:600;color:var(--navy);}
+
+footer{background:var(--navy);padding:48px 64px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
+.foot-logo{font-family:var(--font-display);font-weight:900;font-size:1.3rem;color:var(--white);}
+.foot-logo span{color:var(--coral);}
+.foot-links{display:flex;gap:28px;}
+.foot-links a{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.4);text-decoration:none;transition:color .3s;}
+.foot-links a:hover{color:var(--coral);}
+.foot-copy{font-size:.72rem;color:rgba(255,255,255,.25);}
+
+#scrollTop{position:fixed;bottom:36px;right:36px;z-index:100;width:50px;height:50px;border-radius:50%;background:var(--coral);color:var(--white);border:none;font-size:1.2rem;cursor:none;box-shadow:0 8px 28px rgba(255,92,77,.5);display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(20px);transition:all .3s;}
+#scrollTop.show{opacity:1;transform:translateY(0);}
+#scrollTop:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(255,92,77,.6);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
+
+@media(max-width:960px){
+  nav{padding:16px 24px;}nav.scrolled{padding:12px 24px;}
+  .nav-links,.nav-cta{display:none;}
+  .hero{padding:100px 24px 60px;}
+  .hero-cards{position:relative;right:auto;top:auto;transform:none;flex-direction:row;flex-wrap:wrap;margin-top:40px;animation:fadeUp .9s ease .4s both;}
+  .about,.why-inner,.contact-inner{grid-template-columns:1fr;gap:48px;}
+  .services,.portfolio,.why,.contact,.about{padding:80px 24px;}
+  .services-grid{grid-template-columns:1fr 1fr;gap:16px;}
+  .projects-grid{grid-template-columns:1fr 1fr;}
+  .portfolio-header{flex-direction:column;align-items:flex-start;gap:24px;}
+  footer{padding:32px 24px;}
+}
+@media(max-width:640px){
+  .services-grid,.projects-grid,.form-row{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">Ali<span>.</span>Raeyan</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me ✦</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-blob3"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="pulse"></span> Available for Projects</div>
+    <h1 class="hero-title">
+      Designs That<br>
+      <span class="line2">Make People Stop.</span>
+    </h1>
+    <p class="hero-sub">I'm Ali Raeyan — a graphic design entrepreneur crafting brand identities, visual stories, and digital experiences that make businesses impossible to forget.</p>
+    <div class="hero-btns">
+      <a href="#portfolio" class="btn-main">View My Work →</a>
+      <a href="#contact" class="btn-outline">Let's Talk ✦</a>
+    </div>
+  </div>
+  <div class="hero-cards">
+    <div class="float-card c1">
+      <div class="card-icon">🎨</div>
+      <div class="card-label">Projects Done</div>
+      <div class="card-val"><span id="count1">0</span>+</div>
+      <div class="card-pill pill-green">↑ Growing</div>
+    </div>
+    <div class="float-card c2">
+      <div class="card-icon">⭐</div>
+      <div class="card-label">Happy Clients</div>
+      <div class="card-val"><span id="count2">0</span>+</div>
+      <div class="card-pill pill-coral">100% Satisfied</div>
+    </div>
+    <div class="float-card c3">
+      <div class="card-icon">🚀</div>
+      <div class="card-label">Experience</div>
+      <div class="card-val">5+ <small style="font-size:1rem;color:#6B7280">yrs</small></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="star">✦</span> Brand Identity</div>
+    <div class="marquee-item"><span class="star">✦</span> Social Media Design</div>
+    <div class="marquee-item"><span class="star">✦</span> Print & Marketing</div>
+    <div class="marquee-item"><span class="star">✦</span> Logo Design</div>
+    <div class="marquee-item"><span class="star">✦</span> Digital Campaigns</div>
+    <div class="marquee-item"><span class="star">✦</span> Visual Strategy</div>
+    <div class="marquee-item"><span class="star">✦</span> Brand Identity</div>
+    <div class="marquee-item"><span class="star">✦</span> Social Media Design</div>
+    <div class="marquee-item"><span class="star">✦</span> Print & Marketing</div>
+    <div class="marquee-item"><span class="star">✦</span> Logo Design</div>
+    <div class="marquee-item"><span class="star">✦</span> Digital Campaigns</div>
+    <div class="marquee-item"><span class="star">✦</span> Visual Strategy</div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="about-text reveal-left">
+    <div class="section-chip">✦ About Me</div>
+    <h2 class="section-title">Design Is My <em>Language</em></h2>
+    <p>I'm Ali Raeyan, a graphic design entrepreneur based in Karachi, Pakistan. With a sharp eye for detail and a deep love for visual storytelling, I create designs that don't just look stunning — they work hard for your business.</p>
+    <p>From crafting iconic brand identities to building entire visual systems, I partner with businesses who want their vision brought to life with creativity, strategy, and precision.</p>
+    <div class="skills-list">
+      <span class="skill-tag">Adobe Illustrator</span>
+      <span class="skill-tag">Photoshop</span>
+      <span class="skill-tag">Figma</span>
+      <span class="skill-tag">InDesign</span>
+      <span class="skill-tag">Brand Strategy</span>
+      <span class="skill-tag">Typography</span>
+      <span class="skill-tag">Color Theory</span>
+      <span class="skill-tag">Motion Graphics</span>
+    </div>
+  </div>
+  <div class="stats-grid reveal-right">
+    <div class="stat-box">
+      <div class="stat-emoji">🎨</div>
+      <div class="stat-num"><span class="counter" data-target="50">0</span><span>+</span></div>
+      <div class="stat-label">Projects Delivered</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-emoji">🤝</div>
+      <div class="stat-num"><span class="counter" data-target="30">0</span><span>+</span></div>
+      <div class="stat-label">Happy Clients</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-emoji">⚡</div>
+      <div class="stat-num"><span class="counter" data-target="5">0</span><span>+</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-emoji">🏆</div>
+      <div class="stat-num"><span class="counter" data-target="100">0</span><span>%</span></div>
+      <div class="stat-label">Client Satisfaction</div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="services-bg-dots"></div>
+  <div class="services-header reveal">
+    <div class="section-chip" style="background:rgba(255,216,77,.15);color:var(--yellow);">✦ What I Offer</div>
+    <h2 class="section-title" style="color:var(--white);">Services That Make Your<br><em style="color:var(--yellow);">Brand Shine</em></h2>
+    <p class="section-sub">Every service is crafted with purpose, passion, and a relentless eye for detail.</p>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card reveal">
+      <div class="svc-icon-wrap">🎨</div>
+      <div class="svc-num">01</div>
+      <div class="svc-name">Brand Identity</div>
+      <p class="svc-desc">Logos, color palettes, typography, and brand guidelines that define who you are and make you unforgettable.</p>
+      <div class="svc-arrow">→</div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-icon-wrap">📱</div>
+      <div class="svc-num">02</div>
+      <div class="svc-name">Social Media Design</div>
+      <p class="svc-desc">Scroll-stopping visuals that grow your online presence and build a loyal audience across every platform.</p>
+      <div class="svc-arrow">→</div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-icon-wrap">🖨️</div>
+      <div class="svc-num">03</div>
+      <div class="svc-name">Print & Marketing</div>
+      <p class="svc-desc">Brochures, flyers, banners, and business cards that leave a lasting impression wherever they go.</p>
+      <div class="svc-arrow">→</div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-icon-wrap">💻</div>
+      <div class="svc-num">04</div>
+      <div class="svc-name">Digital Design</div>
+      <p class="svc-desc">Web graphics, presentations, and UI elements crafted for maximum digital impact.</p>
+      <div class="svc-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <div class="portfolio-header reveal">
+    <div>
+      <div class="section-chip">✦ My Work</div>
+      <h2 class="section-title">Work That <em>Speaks</em> Itself</h2>
+    </div>
+    <a href="#contact" class="btn-main">Start a Project →</a>
+  </div>
+  <div class="filter-tabs reveal">
+    <button class="filter-btn active" data-filter="all">All Work</button>
+    <button class="filter-btn" data-filter="brand">Branding</button>
+    <button class="filter-btn" data-filter="social">Social Media</button>
+    <button class="filter-btn" data-filter="print">Print</button>
+  </div>
+  <div class="projects-grid">
+    <div class="proj-card reveal" data-cat="brand">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#FFF5F4,#FFE8E6);">🎨</div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag-pill" style="background:rgba(255,92,77,.1);color:var(--coral);">Branding</span>
+          <span class="proj-tag-pill" style="background:rgba(15,27,53,.06);color:var(--navy);">Identity</span>
+        </div>
+        <div class="proj-name">Signature Brand Design</div>
+        <p class="proj-desc">A complete brand overhaul — logo, palette, typography, and guidelines for a premium lifestyle client.</p>
+        <a href="#contact" class="proj-link">View Project →</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" data-cat="social">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#F0FFFE,#E0FFF9);">📱</div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag-pill" style="background:rgba(0,201,177,.12);color:var(--teal-dark);">Social Media</span>
+          <span class="proj-tag-pill" style="background:rgba(15,27,53,.06);color:var(--navy);">Campaign</span>
+        </div>
+        <div class="proj-name">Digital Campaign Series</div>
+        <p class="proj-desc">A cohesive 30-post visual campaign across Instagram and LinkedIn that doubled engagement rates.</p>
+        <a href="#contact" class="proj-link">View Project →</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" data-cat="print">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#FFFBF0,#FFF5D6);">🖨️</div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag-pill" style="background:rgba(255,216,77,.2);color:#B8860B;">Print</span>
+          <span class="proj-tag-pill" style="background:rgba(15,27,53,.06);color:var(--navy);">Marketing</span>
+        </div>
+        <div class="proj-name">Corporate Marketing Kit</div>
+        <p class="proj-desc">Print-ready brochures, business cards, and event banners for a Karachi-based corporate firm.</p>
+        <a href="#contact" class="proj-link">View Project →</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" data-cat="brand">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#F5F0FF,#EDE6FF);">💎</div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag-pill" style="background:rgba(139,92,246,.12);color:#7C3AED;">Branding</span>
+          <span class="proj-tag-pill" style="background:rgba(15,27,53,.06);color:var(--navy);">Luxury</span>
+        </div>
+        <div class="proj-name">Luxury Brand System</div>
+        <p class="proj-desc">Full visual identity for a high-end fashion brand including packaging, lookbook, and digital assets.</p>
+        <a href="#contact" class="proj-link">View Project →</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" data-cat="social">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#FFF0F5,#FFE6EF);">✨</div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag-pill" style="background:rgba(236,72,153,.1);color:#BE185D;">Social Media</span>
+          <span class="proj-tag-pill" style="background:rgba(15,27,53,.06);color:var(--navy);">Content</span>
+        </div>
+        <div class="proj-name">Influencer Brand Pack</div>
+        <p class="proj-desc">Complete social media visual kit — story templates, highlights covers, and feed layouts for an influencer.</p>
+        <a href="#contact" class="proj-link">View Project →</a>
+      </div>
+    </div>
+    <div class="proj-card reveal" data-cat="print">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#F0FFF4,#DCFCE7);">🌿</div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag-pill" style="background:rgba(34,197,94,.12);color:#15803D;">Print</span>
+          <span class="proj-tag-pill" style="background:rgba(15,27,53,.06);color:var(--navy);">Packaging</span>
+        </div>
+        <div class="proj-name">Eco Brand Packaging</div>
+        <p class="proj-desc">Sustainable packaging design and label system for an organic skincare startup based in Lahore.</p>
+        <a href="#contact" class="proj-link">View Project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="why-inner">
+    <div>
+      <div class="section-chip reveal">✦ Why Choose Me</div>
+      <h2 class="section-title reveal">Why Clients Love<br>Working With <em>Ali</em></h2>
+      <div class="why-items">
+        <div class="why-item reveal"><div class="why-check">🎨</div><div><div class="why-t">Creative Vision</div><div class="why-d">Every design is unique, tailored to your brand — never templated, always original and strategic.</div></div></div>
+        <div class="why-item reveal"><div class="why-check">🧠</div><div><div class="why-t">Business Mindset</div><div class="why-d">I design with your goals and audience in mind. Beautiful AND built to drive real results.</div></div></div>
+        <div class="why-item reveal"><div class="why-check">⚡</div><div><div class="why-t">On-Time Delivery</div><div class="why-d">Deadlines are commitments, not suggestions. Your project delivered on time, every time.</div></div></div>
+        <div class="why-item reveal"><div class="why-check">💬</div><div><div class="why-t">Clear Communication</div><div class="why-d">I keep you updated every step of the way. No surprises — just smooth, transparent collaboration.</div></div></div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal-right">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-quote">"Ali transformed our brand completely. We went from looking like every other company to having an identity that truly stands out. Incredible work!"</p>
+      <div class="test-author">
+        <div class="test-avatar">S</div>
+        <div><div class="test-name">Sara K.</div><div class="test-role">CEO, Karachi Startup</div></div>
+      </div>
+      <div class="test-divider">
+        <div class="test-stars" style="font-size:.9rem;margin-bottom:16px;">★★★★★</div>
+        <p class="test-quote" style="font-size:1.15rem;">"Fast, professional, and incredibly talented. Ali's social media designs doubled our engagement in just 3 weeks!"</p>
+        <div class="test-author">
+          <div class="test-avatar" style="background:linear-gradient(135deg,var(--teal),var(--teal-dark));">M</div>
+          <div><div class="test-name">Mohammed A.</div><div class="test-role">Marketing Director</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-blob"></div>
+  <div class="contact-inner">
+    <div class="contact-info-side reveal-left">
+      <div class="section-chip">✦ Get In Touch</div>
+      <h2 class="contact-heading">Let's Build Something <em>Amazing</em> Together</h2>
+      <p class="contact-para">Have a project in mind? Want to elevate your brand? I'm always open to discussing new ideas, creative projects, and opportunities.</p>
+      <div class="contact-methods">
+        <div class="contact-method"><div class="cm-icon">📧</div><div><div class="cm-label">Email</div><div class="cm-val">ali@raeyan.com</div></div></div>
+        <div class="contact-method"><div class="cm-icon">📍</div><div><div class="cm-label">Location</div><div class="cm-val">Karachi, Pakistan</div></div></div>
+        <div class="contact-method"><div class="cm-icon">⏰</div><div><div class="cm-label">Response Time</div><div class="cm-val">Within 24 hours</div></div></div>
+      </div>
+    </div>
+    <div class="contact-form-wrap reveal-right">
+      <div id="formContent">
+        <div class="form-title">Send a Message ✦</div>
+        <p class="form-sub">Fill in the details below and I'll get back to you shortly.</p>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="John Doe" id="fname"></div>
+          <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="john@email.com" id="femail"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Service Needed</label>
+          <select class="form-input" id="fservice" style="cursor:none;">
+            <option value="">Select a service...</option>
+            <option>Brand Identity</option>
+            <option>Social Media Design</option>
+            <option>Print & Marketing</option>
+            <option>Digital Design</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">Your Message</label><textarea class="form-textarea" placeholder="Tell me about your project..." id="fmsg"></textarea></div>
+        <button class="form-submit" id="submitBtn">Send Message ✦</button>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="check-icon">🎉</div>
+        <h3>Message Sent!</h3>
+        <p>Thanks for reaching out! Ali will get back to you within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">Ali<span>.</span>Raeyan</div>
+  <div class="foot-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="foot-copy">© 2026 Ali Raeyan. All rights reserved.</div>
+</footer>
+
+<button id="scrollTop" title="Back to top">↑</button>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.skill-tag,.svc-card,.stat-box,.why-item,.proj-card,.filter-btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';cur.style.background='var(--yellow)';ring.style.width='56px';ring.style.height='56px';ring.style.borderColor='var(--yellow)';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='14px';cur.style.height='14px';cur.style.background='var(--coral)';ring.style.width='40px';ring.style.height='40px';ring.style.borderColor='var(--coral)';});
+});
+
+// NAV + SCROLL TOP
+const navbar=document.getElementById('navbar'),st=document.getElementById('scrollTop');
+window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',scrollY>60);st.classList.toggle('show',scrollY>400);});
+st.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// REVEAL
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+
+// COUNTERS
+function animCount(el,target,dur=1800){let s=null;(function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/dur,1),ease=1-Math.pow(1-p,3);el.textContent=Math.floor(ease*target);if(p<1)requestAnimationFrame(step);else el.textContent=target;})(performance.now());}
+const cobs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animCount(e.target,+e.target.dataset.target);cobs.unobserve(e.target);}});},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>cobs.observe(el));
+setTimeout(()=>animCount(document.getElementById('count1'),50,2000),800);
+setTimeout(()=>animCount(document.getElementById('count2'),30,2200),1000);
+
+// PORTFOLIO FILTER
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+    const f=this.dataset.filter;
+    document.querySelectorAll('.proj-card').forEach(c=>{
+      const show=f==='all'||c.dataset.cat===f;
+      c.style.transition='all .4s';c.style.opacity=show?'1':'.2';
+      c.style.transform=show?'scale(1)':'scale(.95)';c.style.pointerEvents=show?'all':'none';
+    });
+  });
+});
+
+// FORM
+document.getElementById('submitBtn').addEventListener('click',()=>{
+  const n=document.getElementById('fname').value.trim(),e=document.getElementById('femail').value.trim(),m=document.getElementById('fmsg').value.trim();
+  document.querySelectorAll('.form-input,.form-textarea').forEach(el=>{el.style.borderColor='';el.style.background='';});
+  if(!n||!e||!m){
+    if(!n)document.getElementById('fname').style.borderColor='var(--coral)';
+    if(!e)document.getElementById('femail').style.borderColor='var(--coral)';
+    if(!m)document.getElementById('fmsg').style.borderColor='var(--coral)';
+    return;
+  }
+  document.getElementById('formContent').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+});
+
+// SMOOTH NAV
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
+});
+</script>
+</body>
+</html>
